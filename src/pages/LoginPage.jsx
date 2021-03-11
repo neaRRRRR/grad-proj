@@ -3,10 +3,12 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import 'bootstrap/dist/css/bootstrap.css';
 import './LoginPage.styles.scss'
-import mapimg from '../assets/map-img.png'
 import test from '../assets/test.jpg'
+import {useHistory,withRouter} from 'react-router-dom'
+import auth from '../auth/auth'
 
-const LoginPage = () => {
+const LoginPage = (props) => {
+  const history = useHistory()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -16,6 +18,12 @@ const LoginPage = () => {
 
   function handleSubmit(event) {
     event.preventDefault();
+    
+    auth.login()
+    history.push("/admin")
+    
+    
+
   }
 
   return (

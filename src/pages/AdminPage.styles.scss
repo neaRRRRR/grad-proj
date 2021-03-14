@@ -1,6 +1,25 @@
-.div{
+.column{
+    
     justify-content: center;
     align-items: center;
-    text-align: center;
-    font-size: large;
+    padding-left: 40px;
+    padding-top: 30px;
+    height: 800px;
+
+}
+
+.left, .right{
+    width: 25%;   
+    border-right: 1px solid gray;
+}
+
+.mid{
+    width: 50%;
+    border-right: 1px solid gray;
+}
+
+.row:after{
+    content: "";
+    display: table;
+    clear: both;
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import Card from '../components/Card/Card'
 import './AdminPage.styles.scss'
+import Map from '../components/Map/MapComponent'
 const AdminPage = () => {
   
     return(
@@ -10,7 +11,12 @@ const AdminPage = () => {
                 <Card />
                 <Card />
             </div>
-            <div className="column mid" ></div>
+            <div className="column mid" >
+                <div className="upper-mid">
+                <Map />
+                </div>
+                <div className="lower-mid"></div>
+            </div>
             <div className="column right" ></div>
         </div>
     )

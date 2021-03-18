@@ -21,6 +21,7 @@ const LoginPage = (props) => {
     
     auth.login()
     history.push("/admin")
+    //history.push("/map")
     
     
 

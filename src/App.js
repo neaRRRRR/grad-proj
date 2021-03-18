@@ -9,7 +9,7 @@ function App() {
     <div className="main">
     <Switch>
       <Route exact path="/" component={LoginPage} />
-      <ProtectedRoute exact path="/admin" component={AdminPage} />
+      <ProtectedRoute exact path="/admin" component={AdminPage} /> 
       </Switch>
     </div>
     </Router>

@@ -16,10 +16,27 @@
 .mid{
     width: 50%;
     border-right: 1px solid gray;
+    
 }
 
 .row:after{
     content: "";
     display: table;
     clear: both;
+}
+
+.upper-mid{
+ display: flex;
+ height: 400px;
+ width: 200px;
+ flex: 1;
+ 
+ 
+}
+
+.lower-mid{
+display: flex;
+flex: 1;
+height: 400px;
+
 }

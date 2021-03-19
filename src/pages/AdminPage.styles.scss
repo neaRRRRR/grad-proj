@@ -40,3 +40,38 @@ flex: 1;
 height: 400px;
 
 }
+
+.dropdown-style{
+    width: 100px;
+}
+
+.input-style{
+    margin-top: 50px;
+}
+
+.circle-button{
+    height: 80px;
+    width: 80px;
+    
+    border-radius: 50px;
+    background-image: url(../assets/plus.png);
+    margin-top: 300px;
+    position: absolute;
+    
+    font-size: 50px;
+    
+}
+
+.lower-mid-l{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+
+}
+
+.lower-mid-r{
+    display: flex;
+    flex: 1;
+    
+
+}

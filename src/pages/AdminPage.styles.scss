@@ -8,9 +8,14 @@
 
 }
 
-.left, .right{
-    width: 25%;   
+.left{
+    width: 23%; 
     border-right: 1px solid gray;
+    
+}
+
+.right{
+    width: 25%;   
 }
 
 .mid{
@@ -47,6 +52,7 @@ height: 400px;
 
 .input-style{
     margin-top: 50px;
+    width: 200px;
 }
 
 .circle-button{

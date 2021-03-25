@@ -31,7 +31,7 @@ const AdminPage = () => {
             </div>
             <div className="column mid" >
                 <div className="upper-mid">
-                {/*<Map />*/}
+                    <Map />
                 </div>
                 <div className="lower-mid">
                     <div className="lower-mid-l">

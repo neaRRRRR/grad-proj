@@ -28,6 +28,9 @@ const AdminPage = () => {
                 <Card />
                 <Card />
                 <Card />
+                <Card />
+                <Card />
+                <Card />
             </div>
             <div className="column mid" >
                 <div className="upper-mid">

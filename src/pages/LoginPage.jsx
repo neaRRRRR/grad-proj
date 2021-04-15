@@ -11,10 +11,21 @@ const LoginPage = (props) => {
   const history = useHistory()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const [emailValid,setEmailValid] = useState(false)
   function validateForm() {
-    return email.length > 0 && password.length > 0;
+    return email.length > 0 && password.length > 6;
   }
+
+  
+   function isEmail(val) {
+    let regEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if(regEmail.test(val)){
+      setEmailValid(true)
+    }
+    else{
+      setEmailValid(false)
+    }
+}
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -22,8 +33,6 @@ const LoginPage = (props) => {
     auth.login()
     history.push("/admin")
     //history.push("/map")
-    
-    
 
   }
 
@@ -56,8 +65,12 @@ const LoginPage = (props) => {
             autoFocus
             type="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              setEmail(e.target.value)
+              isEmail(e.target.value)
+            }}
           />
+          {emailValid ? "" : <label className="error-label">Enter a valid email</label>}
         </Form.Group>
         <Form.Group size="lg" controlId="password">
           <Form.Label>Password</Form.Label>
@@ -66,6 +79,7 @@ const LoginPage = (props) => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          {password.length>6 ? "" : <label className="error-label">Your password is too short</label>}
         </Form.Group>
         <Button block size="lg" type="submit" disabled={!validateForm()}>
           Login

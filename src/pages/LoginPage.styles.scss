@@ -23,6 +23,8 @@
     padding: 180px 0;
   }
 
+
+
   .Login form {
     margin: 0 auto;
     max-width: 320px;
@@ -55,9 +57,10 @@
   
   height: 800px;
   margin-top: 50px;
-  
-  
-  
+
   }
   
+  .error-label {
+    color: red;
+  }
 }

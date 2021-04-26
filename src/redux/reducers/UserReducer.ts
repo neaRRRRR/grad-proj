@@ -18,11 +18,11 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return { ...state, fetching: true }
 
     case FETCH_USER_DATA_SUCCESS:
+
       return {
         ...state,
-        isLoginSuccess: true,
-        fetched: true,
         fetching: false,
+        isLoginSuccess: true,
         users: action.payload,
         error: '',
       } //,userToken falanfişman
@@ -31,7 +31,6 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         fetching: false,
-        fetched: true,
         isLoginSuccess: false,
         users: [],
         error: action.payload,

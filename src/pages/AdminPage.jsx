@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Card from '../components/Card/Card'
 import Dropdown from 'react-dropdown';
 import './AdminPage.styles.scss'
@@ -8,13 +8,25 @@ import 'react-date-range/dist/theme/default.css'; // theme css file
 import Map from '../components/Map/MapComponent'
 import CalendarComp from '../components/CalendarComponent/CalendarComp'
 import { PieChart } from 'react-minimal-pie-chart'
-
+import { useSelector } from 'react-redux';
+import useDesigns from '../hooks/useDesigns'
 const AdminPage = () => {
 
+
+    const {data} = useDesigns()
+    
+    const fakeData = [
+        {'createdAt' : 20},
+        {'createdAt' : 23},
+        {'createdAt' : 240},
+        {'createdAt' : 205},
+        {'createdAt' : 202},
+    ]
     const options = [
         'Billboard', 'CLP', 'Led'
       ];
 
+    
     const pieData = [
         { title: 'Broken', value: 20, color: '#51BCDA' },
         { title: 'Idle', value: 30, color: '#504E5C' },
@@ -25,16 +37,13 @@ const AdminPage = () => {
     return(
         <div className="row">
             <div className="column left" >
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
+
+                <Card item={data}/>       
+                     
             </div>
             <div className="column mid" >
                 <div className="upper-mid">
-                    <Map />
+                    {/*map buraya*/}
                 </div>
                 <div className="lower-mid">
                     <div className="lower-mid-l">

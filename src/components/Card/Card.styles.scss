@@ -39,8 +39,13 @@
 }
 
 .card-image{
-    height: 45%;
-    width: 80%;
+  height: 40px;
+  width: 40px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 10px;
+  margin-top: 2px;
     
 }
 .card-date{

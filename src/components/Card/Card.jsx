@@ -2,29 +2,37 @@ import React from 'react'
 import './Card.styles.scss'
 import usericon from '../../assets/usericon.png'
 
-const Card = () => {
+const Card = ({item}) => {
 
-    return(
-        <div className='card'>
-            <div className='inner-card'>
-                <div className='up'>
-                    <div className='card-date'>22.04.2021</div>
-                </div>
-                
-                <div className='middle' style={{borderTop:"4px solid blue"}}>
-                    <div>Design Name</div>
-                    <div style={{fontSize:"smaller",color:"#51BCDA"}}>Design Tags</div>
-                </div>
-                
-                <div className='down'>
-                    <div>
-                        <img src={usericon} className='card-image'></img>
+    
+        
+        return(
+            item.map((data) => {
+                return (
+                    <div className='card'>
+                <div className='inner-card'>
+                    <div className='up' style={{backgroundImage:"url("+data.designImages[0].imageUrl+")"}}>                       
+                        <div className='card-date'>{data.createdAt}</div>                                        
                     </div>
-                    <div>Designer's name surname</div>
+                    
+                    <div className='middle' style={{borderTop:"4px solid blue"}}>
+                        <div style={{fontSize:"medium"}}>{data.title}</div>  
+                            <div style={{fontSize:"smaller",color:"#51BCDA"}}>{data.designTags.map((item) => item.tag.tag + ', ')}</div>                        
+                    </div>
+                    
+                    <div className='down'>
+                        <div>
+                            <img src={data.designerProfile.avatarUrl} className='card-image'></img>
+                        </div>
+                        <div>{data.designerProfile.fullName}</div>
+                    </div>
                 </div>
             </div>
-        </div>
-    )
+                )
+                
+            })
+            
+        )
 
 
 }

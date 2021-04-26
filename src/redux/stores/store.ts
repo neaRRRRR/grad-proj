@@ -1,8 +1,8 @@
 import { combineReducers, createStore } from "redux";
-import userReducer from "../reducers/reducer";
+import userEventsReducer from "../reducers/UserReducer";
 
 const rootReducer = combineReducers({
-  userEvents: userReducer
+  userEvents: userEventsReducer
 })
 
 export type RootState = ReturnType<typeof rootReducer>

@@ -22,7 +22,7 @@ const LoginPage = (props) => {
     return email.length > 0 && password.length > 6;
   }
 
-  const userData = useSelector((state) => state)
+  const userData = useSelector((state) => state.User)
   const dispatch = useDispatch()
 
   useEffect(() => {

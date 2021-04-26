@@ -12,26 +12,26 @@ export const fetchDataRequest = () => {
   }
 }
 
-export const fetchDataSuccess = (data: any) => {
+export const fetchDataSuccess = (data) => {
   return {
     type: FETCH_USER_DATA_SUCCESS,
     payload: data,
   }
 }
 
-export const fetchDataError = (error: any) => {
+export const fetchDataError = (error) => {
   return {
     type: FETCH_USER_DATA_ERROR,
     payload: error,
   }
 }
 
-export const fetchData = (email: any, password: any) => {
+export const fetchData = (email, password) => {
 
   /* let bodyFormData = new FormData()
    bodyFormData.append('email', email)
    bodyFormData.append('password', password)*/
-  return async (dispatch: (arg0: { type: string; payload?: any }) => void) => {
+  return async (dispatch) => {
     dispatch(fetchDataRequest())
     try {
       await axios

@@ -7,13 +7,22 @@ import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import Map from '../components/Map/MapComponent'
 import CalendarComp from '../components/CalendarComponent/CalendarComp'
+import DatePicker from "react-datepicker"
+import "react-datepicker/dist/react-datepicker.css"
 import { PieChart } from 'react-minimal-pie-chart'
 import { useSelector } from 'react-redux';
 import useDesigns from '../hooks/useDesigns'
 const AdminPage = () => {
 
-
+    const [title,setTitle] = useState()
+    const [desc,setDesc]= useState()
+    const [tags,setTags] = useState()
+    const [img,setImg] = useState()
+    const [b64,setB64] = useState()
+    const [startDate,setStartDate] = useState(new Date())
+    const [endDate,setEndDate] = useState(new Date())
     const {data} = useDesigns()
+    
     
     const fakeData = [
         {'createdAt' : 20},
@@ -34,7 +43,52 @@ const AdminPage = () => {
         ]
 
     const defaultOption = options[0];
+
+
+    const getBase64 = file => {
+        return new Promise(resolve => {
+          let fileInfo;
+          let baseURL = "";
+          // Make new FileReader
+          let reader = new FileReader();
+    
+          // Convert the file to base64 text
+          reader.readAsDataURL(file);
+    
+          // on reader load somthing...
+          reader.onload = () => {
+            // Make a fileInfo Object
+            //console.log("Called", reader);
+            baseURL = reader.result;
+            resolve(baseURL);
+          };
+          //console.log(fileInfo);
+        });
+      };
+
+
+    const handleFileInput = (e) => {
+        console.log(e.target.files[0])
+
+        
+
+        let file = e.target.files[0]
+
+        getBase64(file).then(result => {
+            file["base64"] = result
+            
+            setB64(result)
+        }).catch(err => {
+            console.log(err)
+        })
+
+        setImg(file.base64)
+
+    }
+
+
     return(
+        
         <div className="row">
             <div className="column left" >
 
@@ -43,26 +97,26 @@ const AdminPage = () => {
             </div>
             <div className="column mid" >
                 <div className="upper-mid">
-                    {/*map buraya*/}
+                    {/*<Map />*/}
                 </div>
                 <div className="lower-mid">
                     <div className="lower-mid-l">
                         <div>
                         <Dropdown className="dropdown-style" options={options} onChange={() => {}} value={defaultOption} placeholder="Select an option" />
-                        </div>
-                        
-                        <input placeholder="Title" className="input-style"  value="" />
-                        <input placeholder="Description" className="input-style"  value="" />
+                        </div>                      
+                        <input placeholder="Title" className="input-style" onChange={(e) => {setTitle(e.target.value)}}  value={title} />
+                        <input placeholder="Description" className="input-style" onChange={(e) => {setDesc(e.target.value)}} value={desc} />
+                        <input placeholder="Tags (Seperate with ',')" className="input-style" onChange={(e) => {setTags(e.target.value)}} value={tags} />
+                        <input type="file" className="input-style" name="file" accept="image/png" onChange={(e) => {handleFileInput(e)}} />
                     </div>
                     <div className="lower-mid-r">
                         <div>
-                            <CalendarComp />
+                        <div className='calendar-section'>
+                            Start Date: <DatePicker selected={startDate} dateFormat={'dd-MM-yyyy'} minDate={new Date()} onChange={date => setStartDate(date)} />
+                            End Date: <DatePicker selected={endDate} dateFormat={'dd-MM-yyyy'} minDate={new Date()} onChange={date => setEndDate(date)} />
                         </div>
-                        <div>
-                            <button className="circle-button" >
-                                +
-                            </button>
                         </div>
+                        
                     </div>               
                 </div>
             </div>
@@ -86,6 +140,8 @@ const AdminPage = () => {
                 </div>
             </div>
         </div>
+        
+    
     )
   
 }

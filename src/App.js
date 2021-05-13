@@ -1,7 +1,7 @@
 import LoginPage from './pages/LoginPage'
 import AdminPage from './pages/AdminPage'
 import './App.css';
-import {BrowserRouter as Router,Switch,Route} from 'react-router-dom'
+import {BrowserRouter as Router,Switch,Route} from 'react-router-dom' //buildlemeden once HashRouter yap burayi
 import {ProtectedRoute} from './components/ProtectedRoute'
 import { Provider } from 'react-redux'
 import { createStore, combineReducers, applyMiddleware } from 'redux'

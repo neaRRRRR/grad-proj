@@ -2,18 +2,27 @@
     
     justify-content: center;
     align-items: center;
-    padding-left: 40px;
-    padding-right: 40px;
-    padding-top: 30px;
-    height: 800px;
+    padding-left: 3%;
+    padding-right: 0.5%;
+    padding-top: 2%;
+    height: 850px;
 
 }
+
+
+
 
 .left{
     width: 23%; 
     border-right: 1px solid gray;
     overflow: auto;
     
+}
+
+.calendar-section{
+    display: flex;
+    flex-direction: column;
+    margin-top: 25%;
 }
 
 .right{
@@ -45,7 +54,7 @@
 .lower-mid{
 display: flex;
 flex: 1;
-height: 40%;
+height: 45%;
 
 
 }
@@ -55,7 +64,7 @@ height: 40%;
 }
 
 .input-style{
-    margin-top: 50px;
+    margin-top: 15px;
     width: 200px;
 }
 
@@ -83,7 +92,7 @@ height: 40%;
 .lower-mid-r{
     display: flex;
     flex: 1;
-    
+    padding-bottom: 10%;
 
 }
 

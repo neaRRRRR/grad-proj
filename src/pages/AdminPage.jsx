@@ -12,17 +12,23 @@ import "react-datepicker/dist/react-datepicker.css"
 import { PieChart } from 'react-minimal-pie-chart'
 import { useSelector } from 'react-redux';
 import useDesigns from '../hooks/useDesigns'
+import axios from 'axios'
 const AdminPage = () => {
 
+    const userData = useSelector((state) => state.User.users)
     const [title,setTitle] = useState()
     const [desc,setDesc]= useState()
     const [tags,setTags] = useState()
     const [img,setImg] = useState()
     const [b64,setB64] = useState()
+    const [type,setType] = useState()
     const [startDate,setStartDate] = useState(new Date())
     const [endDate,setEndDate] = useState(new Date())
     const {data} = useDesigns()
     
+    useEffect(() => {
+        //console.log(userData.token)
+    })
     
     const fakeData = [
         {'createdAt' : 20},
@@ -32,7 +38,7 @@ const AdminPage = () => {
         {'createdAt' : 202},
     ]
     const options = [
-        'Billboard', 'CLP', 'Led'
+        'billboard', 'clp', 'led'
       ];
 
     
@@ -76,14 +82,56 @@ const AdminPage = () => {
 
         getBase64(file).then(result => {
             file["base64"] = result
-            
-            setB64(result)
+            console.log(file.base64)
+            setB64(file.base64)
         }).catch(err => {
             console.log(err)
         })
 
+        
         setImg(file.base64)
 
+    }
+
+    const addButton = () => {
+        // 
+       let tagsArr = tags.split(',')
+        // console.log(tagsArr)
+        
+        let startdt = startDate.toISOString().substring(0,10)
+        let enddt = endDate.toISOString().substring(0,10)
+        let fields = [
+            {
+                "field_codes": ["Q34"], 
+                "start_of_hanging": startdt, 
+                "end_of_hanging": enddt
+            },
+        ]
+        console.log(type,title,desc,tagsArr,fields)
+        let b64s = [b64.substring(22)]
+       
+        axios.post('http://104.248.123.249/designs/create',
+                {
+                  designer_id: 6,
+                  type: type,
+                  title: title,
+                  detail: desc,
+                  tags: tagsArr,
+                  fields: fields,
+                  design_images: b64s,
+                }, { headers: {
+                  Authorization: 'Bearer ' + userData.token
+                } })
+                .then(response => {
+                  console.log('pog')
+                  
+                })
+                .catch(error => {
+                  console.log(error.response)
+                  
+                  
+                });
+        
     }
 
 
@@ -102,18 +150,19 @@ const AdminPage = () => {
                 <div className="lower-mid">
                     <div className="lower-mid-l">
                         <div>
-                        <Dropdown className="dropdown-style" options={options} onChange={() => {}} value={defaultOption} placeholder="Select an option" />
+                        <Dropdown className="dropdown-style" options={options} onChange={(e) => {setType(e.value)}} value={defaultOption} placeholder="Select an option" />
                         </div>                      
                         <input placeholder="Title" className="input-style" onChange={(e) => {setTitle(e.target.value)}}  value={title} />
                         <input placeholder="Description" className="input-style" onChange={(e) => {setDesc(e.target.value)}} value={desc} />
                         <input placeholder="Tags (Seperate with ',')" className="input-style" onChange={(e) => {setTags(e.target.value)}} value={tags} />
-                        <input type="file" className="input-style" name="file" accept="image/png" onChange={(e) => {handleFileInput(e)}} />
+                        Select an Image:<input type="file" className="input-style" name="file" accept="image/png" onChange={(e) => {handleFileInput(e)}} />
                     </div>
                     <div className="lower-mid-r">
                         <div>
                         <div className='calendar-section'>
-                            Start Date: <DatePicker selected={startDate} dateFormat={'dd-MM-yyyy'} minDate={new Date()} onChange={date => setStartDate(date)} />
+                            Start Date: <DatePicker selected={startDate} dateFormat={'dd-MM-yyyy'} minDate={new Date()}  onChange={(date) => setStartDate(date)} />
                             End Date: <DatePicker selected={endDate} dateFormat={'dd-MM-yyyy'} minDate={new Date()} onChange={date => setEndDate(date)} />
+                            <button class="post-button" onClick={() => {addButton()}}>Add Design</button>
                         </div>
                         </div>
                         

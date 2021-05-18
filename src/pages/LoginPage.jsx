@@ -18,6 +18,7 @@ const LoginPage = (props) => {
   const [chkPw,setChkPw] = useState(true)
   const [arr, setArr] = useState([])
   const [isLog,setLog] = useState(true)
+  const [pwText,setPwText] = useState('Forgot Password?')
   function validateForm() {
     return email.length > 0 && password.length > 6;
   }
@@ -113,6 +114,12 @@ const LoginPage = (props) => {
           />
           {chkPw ? "" : password.length>6 ? "" : <label className="error-label">Your password is too short</label>}
         </Form.Group>
+        {
+          
+                <label style={{color:'#3D63AF'}} onClick={() => {setPwText('Password will be sending to this email')}}>{pwText}</label>
+          }
+        
+        
         <Button block size="lg" type="submit" disabled={!validateForm()}>
           Login
         </Button>

@@ -20,7 +20,7 @@ const persistConfig = {
   key: 'root',
 }
 
-const rootReducer = combineReducers({
+const appReducer = combineReducers({
   User: userReducer,
   Random: RandomReducer,
   IdPass: IdReducer,
@@ -29,6 +29,13 @@ const rootReducer = combineReducers({
   SortDesigns: SortDesignsReducer,
   FilterDesigns:FilterDesignsReducer
 })
+
+const rootReducer = (state,action) => {
+  if(action.type === 'USER_LOGOUT'){
+    state = undefined
+  }
+  return appReducer(state,action)
+}
 
 
 
@@ -40,12 +47,10 @@ function App() {
   return (
     <Provider store={store}>
     <Router>
-    <div className="main">
     <Switch>
       <Route exact path="/" component={LoginPage} />
       <ProtectedRoute exact path="/admin" component={AdminPage} /> 
       </Switch>
-    </div>
     </Router>
     
     </Provider>

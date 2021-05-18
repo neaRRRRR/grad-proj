@@ -12,7 +12,8 @@ const Card = ({item}) => {
                     <div className='card'>
                 <div className='inner-card'>
                     <div className='up' style={{backgroundImage:"url("+data.designImages[0].imageUrl+")"}}>                       
-                        <div className='card-date'>{data.createdAt}</div>                                        
+                        <div className='card-date'>{data.createdAt}</div> 
+                        <div className='card-id'>{data.id}</div>                                       
                     </div>
                     
                     <div className='middle' style={{borderTop:"4px solid blue"}}>

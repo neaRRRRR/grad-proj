@@ -4,6 +4,7 @@ import {
   FETCH_USER_DATA_ERROR,
   FETCH_USER_DATA_REQUEST,
   FETCH_USER_DATA_SUCCESS,
+  USER_LOGOUT
 } from './actionTypes'
 
 export const fetchDataRequest = () => {
@@ -25,6 +26,8 @@ export const fetchDataError = (error) => {
     payload: error,
   }
 }
+
+
 
 export const fetchData = (email, password) => {
 
@@ -52,4 +55,8 @@ export const fetchData = (email, password) => {
 
     }
   }
+}
+
+export const logout = () => {
+  return {type: USER_LOGOUT}
 }

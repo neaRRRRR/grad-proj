@@ -10,25 +10,31 @@ import CalendarComp from '../components/CalendarComponent/CalendarComp'
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 import { PieChart } from 'react-minimal-pie-chart'
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
 import useDesigns from '../hooks/useDesigns'
+import {useHistory,withRouter,Link} from 'react-router-dom'
+import { logout } from '../redux/actions/loginAction'
 import axios from 'axios'
+
 const AdminPage = () => {
 
-    const userData = useSelector((state) => state.User.users)
+    let userData = useSelector((state) => state.User.users)
     const [title,setTitle] = useState()
     const [desc,setDesc]= useState()
     const [tags,setTags] = useState()
     const [img,setImg] = useState()
     const [b64,setB64] = useState()
     const [type,setType] = useState()
+    const [ops,setOps] = useState('adding')
+    const [id,setId] = useState()
     const [startDate,setStartDate] = useState(new Date())
     const [endDate,setEndDate] = useState(new Date())
-    const {data} = useDesigns()
-    
-    useEffect(() => {
-        //console.log(userData.token)
-    })
+    let {data} = useDesigns()
+    const history = useHistory()
+    const[data2,setData2] = useState(data)
+    const dispatch = useDispatch()
+
+   
     
     const fakeData = [
         {'createdAt' : 20},
@@ -123,10 +129,11 @@ const AdminPage = () => {
                   Authorization: 'Bearer ' + userData.token
                 } })
                 .then(response => {
-                  console.log('pog')
+                  window.alert('Design is succesfully added')
                   
                 })
                 .catch(error => {
+                window.alert('Please check the input fields')
                   console.log(error.response)
                   
                   
@@ -134,19 +141,68 @@ const AdminPage = () => {
         
     }
 
+  
+
+    const refreshData = () => {
+        history.push('/')
+        setTimeout(() => {
+            history.replace('/admin')
+        },50)
+        
+    }
+
+    const deleteDesign = () => {
+        console.log(id)
+        axios.delete('http://104.248.123.249/designs/delete',{
+        headers: {
+            Authorization: 'Bearer ' + userData.token
+          },
+          data: {
+            design_id: id
+          }
+        })
+                .then(response => {
+                  window.alert('Design is succesfully deleted')
+                  
+                })
+                .catch(error => {
+                window.alert('Please check the input fields')
+                  console.log(error.response)
+                  
+                  
+                });
+    }
+
+    const logoutUser = () => {
+        dispatch(logout())
+        history.push('/')
+    }
 
     return(
-        
+        <>
+        <div className="navbar">
+            <h1>HELLO, <label>{userData.adminProfile?.fullName || userData.designerProfile?.fullName || userData.staffProfile?.fullName} !</label></h1>
+            <div>
+            <ul>
+                <li><a onClick={() => {setOps('adding')}}>Adding Design</a></li>
+                <li><a onClick={() => {setOps('deleting')}}>Deleting Design</a></li>
+                <li><a onClick={() => {logoutUser()}}>Logout</a></li>
+            </ul>
+
+            </div>
+        </div>
         <div className="row">
             <div className="column left" >
-
+            <button class="refresh-button" onClick={() => {refreshData()}}>Refresh</button>
                 <Card item={data}/>       
                      
             </div>
             <div className="column mid" >
                 <div className="upper-mid">
-                    {/*<Map />*/}
+                    <Map />
                 </div>
+                {ops === 'adding' ?  
+                
                 <div className="lower-mid">
                     <div className="lower-mid-l">
                         <div>
@@ -168,6 +224,17 @@ const AdminPage = () => {
                         
                     </div>               
                 </div>
+                
+                
+                : 
+                <div>
+                <input placeholder="Enter Design ID" className="input-style" onChange={(e) => {setId(e.target.value)}} value={id}  />
+                <button class="delete-button" onClick={() => {deleteDesign()}} >Delete Design</button>
+                
+                </div>
+                
+                }
+                
             </div>
             <div className="column right" >
             <div style={{textAlign:"center",fontSize:"30px"}}>Status of Advertisements</div>
@@ -189,6 +256,7 @@ const AdminPage = () => {
                 </div>
             </div>
         </div>
+        </>
         
     
     )

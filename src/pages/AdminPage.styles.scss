@@ -29,6 +29,11 @@ body{
       
       li {
         float: left;
+        color: #DADADA;
+      }
+
+      li:hover{
+        color:#504E5C
       }
       
       li a {
@@ -41,6 +46,7 @@ body{
       
       li a:hover {
         background-color: #51BCDA;
+        
       }
 }
 

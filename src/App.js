@@ -14,6 +14,7 @@ import FilterMapReducer from './redux/reducers/FilterMapReducer'
 import RandomReducer from './redux/reducers/RandomReducer'
 import SortDesignsReducer from './redux/reducers/SortDesignsReducer'
 import FilterDesignsReducer from './redux/reducers/FilterDesignsReducer'
+import ResetPage from './pages/ResetPage'
 import { PersistGate } from 'redux-persist/integration/react';
 
 const persistConfig = {
@@ -49,7 +50,8 @@ function App() {
     <Router>
     <Switch>
       <Route exact path="/" component={LoginPage} />
-      <ProtectedRoute exact path="/admin" component={AdminPage} /> 
+      <ProtectedRoute exact path="/admin" component={AdminPage} />
+      <Route exact path="/:id" component={ResetPage} />  
       </Switch>
     </Router>
     

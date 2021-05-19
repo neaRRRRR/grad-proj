@@ -199,7 +199,7 @@ const AdminPage = () => {
             </div>
             <div className="column mid" >
                 <div className="upper-mid">
-                    <Map />
+                    {/*<Map />*/}
                 </div>
                 {ops === 'adding' ?  
                 

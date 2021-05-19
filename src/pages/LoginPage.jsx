@@ -8,17 +8,21 @@ import test from '../assets/test.jpg'
 import {useHistory,withRouter} from 'react-router-dom'
 import { fetchData } from '../redux/actions/loginAction'
 import auth from '../auth/auth'
+import axios from 'axios'
 
 const LoginPage = (props) => {
   const history = useHistory()
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("")
+  const [email2, setEmail2] = useState("")
+  const [password, setPassword] = useState("")
   const [emailValid,setEmailValid] = useState(false)
   const [chkEmail,setChkEmail] = useState(true)
   const [chkPw,setChkPw] = useState(true)
   const [arr, setArr] = useState([])
   const [isLog,setLog] = useState(true)
   const [pwText,setPwText] = useState('Forgot Password?')
+  const [forgot,setForgot] = useState(false)
+
   function validateForm() {
     return email.length > 0 && password.length > 6;
   }
@@ -54,7 +58,7 @@ const LoginPage = (props) => {
     else{
       setEmailValid(false)
     }
-}
+  }
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -62,6 +66,24 @@ const LoginPage = (props) => {
    
     //history.push("/map")
 
+  }
+
+  function sendRecover(event){
+    event.preventDefault();
+    axios.post('http://127.0.0.1:3333/forgot_password',
+                {
+                  email : email2
+                })
+                .then(response => {
+                  window.alert('Password reset link succesfully sent to email')
+                  
+                })
+                .catch(error => {
+                  console.log('--')
+                  console.log(error.response)
+                  
+                  
+                });
   }
 
   return (
@@ -85,6 +107,8 @@ const LoginPage = (props) => {
 
     </div>
     <div className="right-side">
+    {
+      !forgot ? 
     <div className="Login">
       <Form onSubmit={handleSubmit}>
         <Form.Group className="lg" controlId="email">
@@ -113,19 +137,39 @@ const LoginPage = (props) => {
             }
           />
           {chkPw ? "" : password.length>6 ? "" : <label className="error-label">Your password is too short</label>}
-        </Form.Group>
-        {
-          
-                <label style={{color:'#3D63AF'}} onClick={() => {setPwText('Password will be sending to this email')}}>{pwText}</label>
-          }
-        
-        
+        </Form.Group>       
+        <label style={{color:'#3D63AF'}} onClick={() => {setForgot(!forgot)}}>{pwText}</label>    
         <Button block size="lg" type="submit" disabled={!validateForm()}>
           Login
         </Button>
         {isLog ? "" : <label className="error-label">Your login credentials are wrong. Try Again</label>}
       </Form>
     </div>
+    : 
+    <div className="Login">
+      <Form onSubmit={sendRecover}>
+        <Form.Group className="lg" controlId="email">
+          <Form.Label>Email</Form.Label>
+          <Form.Control
+            autoFocus
+            type="email"
+            value={email2}
+            onChange={(e) => {
+              setEmail2(e.target.value)
+              isEmail(e.target.value)
+              setChkEmail(false)
+            }}
+          />
+          {chkEmail ? "" : emailValid ? "" : <label className="error-label">Enter a valid email</label>}
+        </Form.Group>        
+        {forgot ? <label style={{color:'#3D63AF'}} onClick={() => {setForgot(!forgot)}}>Return to Login</label> : <label style={{color:'#3D63AF'}} onClick={() => {setForgot(!forgot)}}>Forgot Password?</label>}
+        <Button block size="lg" type="submit" disabled={!emailValid}>
+          Send
+        </Button>
+        </Form>
+        
+      </div>
+    }
     </div>
     </div>
   );

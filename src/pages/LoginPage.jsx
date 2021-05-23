@@ -33,8 +33,18 @@ const LoginPage = (props) => {
   useEffect(() => {
     console.log(userData)
     if(userData.isLoginSuccess){
-      auth.login()
-      history.push("/admin")
+      if(userData.users.adminProfile){
+        auth.login()
+        history.push("/admin")
+      }
+      if(userData.users.designerProfile){
+        auth.login()
+        history.push("/designer")
+      }
+      if(userData.users.staffProfile){
+        auth.login()
+        history.push("/staff")
+      }
     }
     if(!userData.isLoginSuccess && userData.fetched){
       setLog(false)
@@ -70,6 +80,7 @@ const LoginPage = (props) => {
 
   function sendRecover(event){
     event.preventDefault();
+    console.log(email2)
     axios.post('http://127.0.0.1:3333/forgot_password',
                 {
                   email : email2

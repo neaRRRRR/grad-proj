@@ -1,5 +1,7 @@
 import LoginPage from './pages/LoginPage'
+import DesignerPage from './pages/DesignerPage'
 import AdminPage from './pages/AdminPage'
+import StaffPage from './pages/StaffPage'
 import './App.css';
 import {BrowserRouter as Router,Switch,Route} from 'react-router-dom' //buildlemeden once HashRouter yap burayi
 import {ProtectedRoute} from './components/ProtectedRoute'
@@ -50,7 +52,9 @@ function App() {
     <Router>
     <Switch>
       <Route exact path="/" component={LoginPage} />
+      <ProtectedRoute exact path="/designer" component={DesignerPage} />
       <ProtectedRoute exact path="/admin" component={AdminPage} />
+      <ProtectedRoute exact path="/staff" component={StaffPage} />
       <Route exact path="/:id" component={ResetPage} />  
       </Switch>
     </Router>

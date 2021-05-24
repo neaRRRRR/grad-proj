@@ -20,7 +20,7 @@ const StaffPage = () => {
 
     return(
         <div className="navbar">
-            <h1>HELLO, <label>{userData.adminProfile?.fullName || userData.designerProfile?.fullName || userData.staffProfile?.fullName} ! </label> <labell> as <label>Staff</label></labell></h1>
+            <h1>HELLO, <label>{userData.adminProfile?.fullName || userData.designerProfile?.fullName || userData.staffProfile?.fullName} ! </label> <labell> as <label style={{color:'#8fd310'}}>Staff</label></labell></h1>
             <div>
             <ul>
                 <li><a onClick={() => {}}>Adding Design</a></li>

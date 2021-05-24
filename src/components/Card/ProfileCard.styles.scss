@@ -1,0 +1,48 @@
+.profile-card {
+
+    width: 95%;
+    height: 25%;  
+    margin-bottom: 9%;
+    border-radius: 20px;
+    box-shadow: -1px 10px 22px -4px rgba(87,87,87,0.45);
+    
+
+}
+
+.profile-inner-card {
+    display: flex;
+    flex: 2;
+    flex-direction: column;
+    
+}
+
+.profile-up{
+    display: flex;
+    flex: 1;
+    border-radius: 20px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-size: 45px;
+    border-radius: 20px 20px 0px 0px;
+}
+
+.profile-divider{
+    border: 0.1px solid gray;
+}
+
+
+.profile-bottom{
+    display: flex;
+    flex: 2;
+    margin-left: 5%;
+    margin-top: 5%;
+    flex-direction: column;
+    word-break: break-all;
+}
+
+.profile-name-label{
+    font-weight: 800;
+    font-size: 25px;
+}
+

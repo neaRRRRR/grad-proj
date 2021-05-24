@@ -181,7 +181,7 @@ const DesignerPage = () => {
     return(
         <>
         <div className="navbar">
-            <h1>HELLO, <label>{userData.adminProfile?.fullName || userData.designerProfile?.fullName || userData.staffProfile?.fullName} ! </label> <labell> as <label>Designer</label></labell></h1>
+            <h1>HELLO, <label>{userData.adminProfile?.fullName || userData.designerProfile?.fullName || userData.staffProfile?.fullName} ! </label> <labell> as <label style={{color:'#fcd707'}}>Designer</label></labell></h1>
             <div>
             <ul>
                 <li><a onClick={() => {setOps('adding')}}>Adding Design</a></li>

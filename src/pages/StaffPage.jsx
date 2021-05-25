@@ -23,8 +23,8 @@ const StaffPage = () => {
             <h1>HELLO, <label>{userData.adminProfile?.fullName || userData.designerProfile?.fullName || userData.staffProfile?.fullName} ! </label> <labell> as <label style={{color:'#8fd310'}}>Staff</label></labell></h1>
             <div>
             <ul>
-                <li><a onClick={() => {}}>Adding Design</a></li>
-                <li><a onClick={() => {}}>Deleting Design</a></li>
+                <li><a onClick={() => {}}>Button 1</a></li>
+                <li><a onClick={() => {}}>Button 2</a></li>
                 <li><a onClick={() => {logoutUser()}}>Logout</a></li>
             </ul>
 

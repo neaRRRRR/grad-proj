@@ -24,9 +24,10 @@ const DesignerPage = () => {
     const [tags,setTags] = useState()
     const [img,setImg] = useState()
     const [b64,setB64] = useState()
-    const [type,setType] = useState()
+    const [type,setType] = useState('billboard')
     const [ops,setOps] = useState('adding')
     const [id,setId] = useState()
+    const [field,setField] = useState('Q34')
     const [startDate,setStartDate] = useState(new Date())
     const [endDate,setEndDate] = useState(new Date())
     let {data} = useDesigns()
@@ -36,17 +37,14 @@ const DesignerPage = () => {
 
    
     
-    const fakeData = [
-        {'createdAt' : 20},
-        {'createdAt' : 23},
-        {'createdAt' : 240},
-        {'createdAt' : 205},
-        {'createdAt' : 202},
-    ]
+    
     const options = [
         'billboard', 'clp', 'led'
       ];
 
+    const fieldCods = [
+        'Q34','L67','S62','Z66','J76','D17','B24','M79'
+    ]
     
     const pieData = [
         { title: 'Broken', value: 20, color: '#51BCDA' },
@@ -108,7 +106,7 @@ const DesignerPage = () => {
         let enddt = endDate.toISOString().substring(0,10)
         let fields = [
             {
-                "field_codes": ["Q34"], 
+                "field_codes": ["Z66"], 
                 "start_of_hanging": startdt, 
                 "end_of_hanging": enddt
             },
@@ -118,7 +116,7 @@ const DesignerPage = () => {
        
         axios.post('http://104.248.123.249/designs/create',
                 {
-                  designer_id: 6,
+                  designer_id: userData.designerProfile.designerProfileId,
                   type: type,
                   title: title,
                   detail: desc,
@@ -199,14 +197,15 @@ const DesignerPage = () => {
             </div>
             <div className="column mid" >
                 <div className="upper-mid">
-                    {/*<Map />*/}
+                    <Map />
                 </div>
                 {ops === 'adding' ?  
                 
                 <div className="lower-mid">
                     <div className="lower-mid-l">
-                        <div>
+                        <div style={{display:'flex',flexDirection:'row'}}>
                         <Dropdown className="dropdown-style" options={options} onChange={(e) => {setType(e.value)}} value={defaultOption} placeholder="Select an option" />
+                        <Dropdown className="dropdown-field-style" options={fieldCods} onChange={(e) => {setField(e.value)}} value={field} placeholder="Select an option" />
                         </div>                      
                         <input placeholder="Title" className="input-style" onChange={(e) => {setTitle(e.target.value)}}  value={title} />
                         <input placeholder="Description" className="input-style" onChange={(e) => {setDesc(e.target.value)}} value={desc} />
@@ -215,6 +214,7 @@ const DesignerPage = () => {
                     </div>
                     <div className="lower-mid-r">
                         <div>
+                        
                         <div className='calendar-section'>
                             Start Date: <DatePicker selected={startDate} dateFormat={'dd-MM-yyyy'} minDate={new Date()}  onChange={(date) => setStartDate(date)} />
                             End Date: <DatePicker selected={endDate} dateFormat={'dd-MM-yyyy'} minDate={new Date()} onChange={date => setEndDate(date)} />

@@ -44,9 +44,28 @@
   border-radius: 50%;
   display: inline-block;
   margin-right: 10px;
-  margin-top: 2px;
+  margin-top: 5px;
     
 }
+
+.card-image-none{
+    height: 40px;
+    width: 40px;
+    background-color: #51BCDA;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 10px;
+    margin-top: 5px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .image-text{
+      margin-top: 5px;
+      font-size: 20px;
+      
+  }
 .card-date{
     border-radius: 20px;
     background-color: #51BCDA;

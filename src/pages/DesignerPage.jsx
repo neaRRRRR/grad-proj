@@ -27,7 +27,7 @@ const DesignerPage = () => {
     const [type,setType] = useState('billboard')
     const [ops,setOps] = useState('adding')
     const [id,setId] = useState()
-    const [field,setField] = useState('Q34')
+    const [field,setField] = useState('C75')
     const [startDate,setStartDate] = useState(new Date())
     const [endDate,setEndDate] = useState(new Date())
     let {data} = useDesigns()
@@ -43,7 +43,7 @@ const DesignerPage = () => {
       ];
 
     const fieldCods = [
-        'Q34','L67','S62','Z66','J76','D17','B24','M79'
+        'C75','A29','K84','J19','Q10','A92','G60','H19'
     ]
     
     const pieData = [
@@ -106,7 +106,7 @@ const DesignerPage = () => {
         let enddt = endDate.toISOString().substring(0,10)
         let fields = [
             {
-                "field_codes": ["Z66"], 
+                "field_codes": [field], 
                 "start_of_hanging": startdt, 
                 "end_of_hanging": enddt
             },

@@ -22,9 +22,16 @@ const Card = ({item}) => {
                     </div>
                     
                     <div className='down'>
+                        {data.designerProfile.avatarUrl === '' ? 
+                        <div>
+                            <div className='card-image-none'><label className='image-text'>{data.designerProfile.fullName.split(' ').map(name => name[0]).join('').toUpperCase()}</label></div>
+                        </div> 
+                        :
                         <div>
                             <img src={data.designerProfile.avatarUrl} className='card-image'></img>
                         </div>
+                        
+                        }
                         <div>{data.designerProfile.fullName}</div>
                     </div>
                 </div>

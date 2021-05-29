@@ -13,36 +13,36 @@ function MapComponent(props){
     >
       <Marker
         position={{ lat: 41.071, lng: 29.097  }}
-        label={'Q34'}
+        label={'C75'}
         
       />
       <Marker
         position={{ lat: 41.065, lng: 28.740  }}
-        label={'L67'}
+        label={'A29'}
       />
       <Marker
         position={{ lat: 41.121, lng: 28.885  }}
-        label={'S62'}
+        label={'K84'}
       />
       <Marker
         position={{ lat: 41.111, lng: 29.167  }}
-        label={'Z66'}
+        label={'J19'}
       />
       <Marker
         position={{ lat: 41.011, lng: 29.137  }}
-        label={'J76'}
+        label={'Q10'}
       />
       <Marker
         position={{ lat: 41.065, lng: 28.947  }}
-        label={'D17'}
+        label={'A92'}
       />
       <Marker
         position={{ lat: 41.142, lng: 29.087  }}
-        label={'B24'}
+        label={'G60'}
       />
       <Marker
         position={{ lat: 41.125, lng: 29.047  }}
-        label={'M79'}
+        label={'H19'}
       />
     </GoogleMap>
 

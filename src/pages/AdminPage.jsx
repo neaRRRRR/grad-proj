@@ -5,6 +5,8 @@ import { logout } from '../redux/actions/loginAction'
 import {useHistory,withRouter} from 'react-router-dom'
 import ProfileCard from '../components/Card/ProfileCard'
 import axios from 'axios'
+import Card from '../components/Card/Card';
+import HangedDesignCard from '../components/Card/HangedDesignCard';
 
 const AdminPage = () => {
 
@@ -12,6 +14,8 @@ const AdminPage = () => {
     const dispatch = useDispatch()
     const history = useHistory()
     const [users,setUsers] = useState([])
+    const [designData,setDesignData] = useState([])
+    const [hangedData,setHangedData] = useState([])
 
 
     useEffect(() => {
@@ -30,6 +34,25 @@ const AdminPage = () => {
                   
                   
                 });
+
+        axios.get('http://104.248.123.249/homepage/admin',
+                { headers: {
+                  Authorization: 'Bearer ' + userData.token
+                } })
+                .then(response => {
+                  console.log('ok-2')
+                  setDesignData(response.data.data.lastTwoDesigns)
+                  setHangedData(response.data.data.lastHangedDesignLocations)
+                  console.log(response.data.data)
+                })
+                .catch(error => {
+                
+                  console.log(error.response)
+                  
+                  
+                });
+
+        
 
 
 
@@ -89,8 +112,11 @@ const AdminPage = () => {
              
             </div>
             <div className="column right" >
-            
-
+            <label className="admin-right-label">Last Two Design</label>
+            <Card item={designData} />
+            <div style={{width:'100%',border:'1px solid black', marginLeft:'-3%', marginBottom:'5%'}}></div>
+            <label className="admin-right-label">Last Hanged Designs</label>
+            <HangedDesignCard item={hangedData} />
             </div>
         </div>
         </>

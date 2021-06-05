@@ -22,6 +22,7 @@ const ProfileCard = ({item}) => {
             <div className='profile-inner-card'>
                 <div className='profile-up' style={data.role === 'admin' ? {backgroundColor:adminBg} : data.role === 'designer' ? {backgroundColor:designerBg} : {backgroundColor:staffBg}}>
                     {data.role === 'designer' ? 'DESIGNER' : data.role === 'admin' ? 'ADMIN' : 'STAFF' }
+                    <div><label style={{'marginTop':'6px', 'fontSize':'30px', }}>{data.id}</label></div>
                 </div>
                 <div className='profile-divider'/>
                 <div className='profile-bottom'>

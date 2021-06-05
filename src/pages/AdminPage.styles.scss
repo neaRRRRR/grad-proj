@@ -38,7 +38,7 @@ body{
       
       li a {
         display: block;
-        color: white;
+        color: rgb(19, 12, 12);
         text-align: center;
         padding: 14px 16px;
         text-decoration: none;
@@ -119,7 +119,11 @@ height: 45%;
 
 }
 
-.post-button{
+.input-style-delete-admin{
+    width: 8%;
+}
+
+.post-button-admin{
     
         background-color: #51BCDA;
         border: none;
@@ -132,6 +136,21 @@ height: 45%;
         margin-top: 10%;
         cursor: pointer;
       
+}
+
+.post-button-admin:disabled{
+    
+    background-color: #504E5C;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 10%;
+    cursor: auto
+  
 }
 
 .refresh-button{
@@ -164,6 +183,17 @@ height: 45%;
 .input-style{
     margin-top: 15px;
     width: 250px;
+}
+
+.input-style-phone{
+    margin-top: 15px;
+    margin-right: 5px;
+    width: 40px;
+}
+
+.input-style-phone-number{
+    margin-top: 15px;
+    width: 205px;
 }
 
 .circle-button{

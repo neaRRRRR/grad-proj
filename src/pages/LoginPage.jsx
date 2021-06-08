@@ -9,6 +9,9 @@ import {useHistory,withRouter} from 'react-router-dom'
 import { fetchData } from '../redux/actions/loginAction'
 import auth from '../auth/auth'
 import axios from 'axios'
+import hatay from '../assets/hatay.jpg'
+import hatay2 from '../assets/hatay2.png'
+import adv from '../assets/adv.jpg'
 
 const LoginPage = (props) => {
   const history = useHistory()
@@ -102,15 +105,10 @@ const LoginPage = (props) => {
     <div className="left-side">
     <div className="left-container">
         <div>
-            <img className="img-holder" src={test} alt="map-img" />
+            <img className="img-holder" src={adv} alt="map-img" />
         </div>
-        <div className="text">
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-        when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-        It has survived not only five centuries, but also the leap into electronic typesetting,
-        remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-        and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+        <div className="text">       
+        Advertising management application of province Hatay
         </div>
     </div>
     </div>

@@ -8,40 +8,40 @@ function MapComponent(props){
     return(
 
         <GoogleMap
-      defaultZoom={10}
-      defaultCenter={{ lat: 41.071, lng: 29.047 }}
+      defaultZoom={13}
+      defaultCenter={{ lat: 36.209, lng: 36.167 }}
     >
       <Marker
-        position={{ lat: 41.071, lng: 29.097  }}
+        position={{ lat: 36.217, lng: 36.133  }}
         label={'C75'}
         
       />
       <Marker
-        position={{ lat: 41.065, lng: 28.740  }}
+        position={{ lat: 36.223, lng: 36.140  }}
         label={'A29'}
       />
       <Marker
-        position={{ lat: 41.121, lng: 28.885  }}
+        position={{ lat: 36.226, lng: 36.149  }}
         label={'K84'}
       />
       <Marker
-        position={{ lat: 41.111, lng: 29.167  }}
+        position={{ lat: 36.223, lng: 36.164  }}
         label={'J19'}
       />
       <Marker
-        position={{ lat: 41.011, lng: 29.137  }}
+        position={{ lat: 36.219, lng: 36.174  }}
         label={'Q10'}
       />
       <Marker
-        position={{ lat: 41.065, lng: 28.947  }}
+        position={{ lat: 36.205, lng: 36.173  }}
         label={'A92'}
       />
       <Marker
-        position={{ lat: 41.142, lng: 29.087  }}
+        position={{ lat: 36.193, lng: 36.166  }}
         label={'G60'}
       />
       <Marker
-        position={{ lat: 41.125, lng: 29.047  }}
+        position={{ lat: 36.185, lng: 36.151  }}
         label={'H19'}
       />
     </GoogleMap>

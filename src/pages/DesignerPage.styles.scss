@@ -111,7 +111,7 @@ height: 45%;
 
 }
 
-.post-button{
+.post-button-designer{
     
         background-color: #51BCDA;
         border: none;
@@ -124,6 +124,21 @@ height: 45%;
         margin-top: 10%;
         cursor: pointer;
       
+}
+
+.post-button-designer:disabled{
+    
+    background-color: #504E5C;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 10%;
+    cursor: auto
+  
 }
 
 .refresh-button{

@@ -15,13 +15,16 @@ import useDesigns from '../hooks/useDesigns'
 import {useHistory,withRouter,Link} from 'react-router-dom'
 import { logout } from '../redux/actions/loginAction'
 import axios from 'axios'
+import billboard from '../assets/billboard.jpg'
+import raket from '../assets/raket.jpg'
+import led from '../assets/led.jpg'
 
 const DesignerPage = () => {
 
     let userData = useSelector((state) => state.User.users)
-    const [title,setTitle] = useState()
-    const [desc,setDesc]= useState()
-    const [tags,setTags] = useState()
+    const [title,setTitle] = useState('')
+    const [desc,setDesc]= useState('')
+    const [tags,setTags] = useState('')
     const [img,setImg] = useState()
     const [b64,setB64] = useState()
     const [type,setType] = useState('billboard')
@@ -176,6 +179,16 @@ const DesignerPage = () => {
         history.push('/')
     }
 
+    const buttonDisable = () => {
+        var hasNumber = /\d/;  
+
+        if(title.length > 14 && desc.length > 15 && tags.length >= 2 && !hasNumber.test(title) && !hasNumber.test(desc)){
+            return true
+        }else{
+          return false 
+        }
+    }
+
     return(
         <>
         <div className="navbar">
@@ -207,9 +220,9 @@ const DesignerPage = () => {
                         <Dropdown className="dropdown-style" options={options} onChange={(e) => {setType(e.value)}} value={defaultOption} placeholder="Select an option" />
                         <Dropdown className="dropdown-field-style" options={fieldCods} onChange={(e) => {setField(e.value)}} value={field} placeholder="Select an option" />
                         </div>                      
-                        <input placeholder="Title" className="input-style" onChange={(e) => {setTitle(e.target.value)}}  value={title} />
-                        <input placeholder="Description" className="input-style" onChange={(e) => {setDesc(e.target.value)}} value={desc} />
-                        <input placeholder="Tags (Seperate with ',')" className="input-style" onChange={(e) => {setTags(e.target.value)}} value={tags} />
+                        <input placeholder="Title-(Min. 15 char.)"  pattern = "[A-Za-z]"  className="input-style" onChange={(e) => {setTitle(e.target.value)}}  value={title} />
+                        <input placeholder="Description-(Min. 10 char.)" className="input-style" onChange={(e) => {setDesc(e.target.value)}} value={desc} />
+                        <input placeholder="Tags (Seperate with ',' - Min 2 char.)" className="input-style" onChange={(e) => {setTags(e.target.value)}} value={tags} />
                         Select an Image:<input type="file" className="input-style" name="file" accept="image/png" onChange={(e) => {handleFileInput(e)}} />
                     </div>
                     <div className="lower-mid-r">
@@ -218,7 +231,7 @@ const DesignerPage = () => {
                         <div className='calendar-section'>
                             Start Date: <DatePicker selected={startDate} dateFormat={'dd-MM-yyyy'} minDate={new Date()}  onChange={(date) => setStartDate(date)} />
                             End Date: <DatePicker selected={endDate} dateFormat={'dd-MM-yyyy'} minDate={new Date()} onChange={date => setEndDate(date)} />
-                            <button class="post-button" onClick={() => {addButton()}}>Add Design</button>
+                            <button class="post-button-designer" disabled={!buttonDisable()} onClick={() => {addButton()}}>Add Design</button>
                         </div>
                         </div>
                         
@@ -237,23 +250,12 @@ const DesignerPage = () => {
                 
             </div>
             <div className="column right" >
-            <div style={{textAlign:"center",fontSize:"30px"}}>Status of Advertisements</div>
-                <div style={{width:'80%',height:'80%'}}>
-            <PieChart
-                data={pieData}
-                label={({dataEntry}) => dataEntry.title}
-                labelStyle={(index) => ({
-                    fill: 'black',
-                    fontSize: '5px',
-                    fontFamily: 'sans-serif',
-                })}
-                labelPosition={55}
-                radius="30"
-                animate="true"
-                viewBoxSize={["90","90"]}
-            />
-            
-                </div>
+            <div style={{textAlign:"center",fontSize:"30px"}}>Billboard Advertisements</div>       
+            <img src={billboard} style={{width:'350px',height:'300px'}}/>           
+            <div style={{textAlign:"center",fontSize:"30px"}}>Led Advertisements</div>
+            <img src={led} style={{width:'350px',height:'300px'}}/>   
+            <div style={{textAlign:"center",fontSize:"30px"}}>CLP Advertisements</div>
+            <img src={raket} style={{width:'350px',height:'300px'}}/>   
             </div>
         </div>
         </>

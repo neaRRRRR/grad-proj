@@ -119,7 +119,9 @@ const AdminPage = () => {
 
 
     const buttonDisable = () => {
-        if(emailValid && pw.length > 6 && rePw.length > 6 && pw === rePw && name.length > 8 && phone.length == 10 ){
+      var hasNumber = /\d/; 
+
+        if(emailValid && pw.length > 6 && rePw.length > 6 && pw === rePw && name.length > 8 && phone.length == 10 && !hasNumber.test(name) ){
             return true
         }else{
           return false 

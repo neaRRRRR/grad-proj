@@ -95,7 +95,7 @@ const LoginPage = (props) => {
                 .catch(error => {
                   console.log('--')
                   console.log(error.response)
-                  
+                  window.alert('This email is not registered !')
                   
                 });
   }

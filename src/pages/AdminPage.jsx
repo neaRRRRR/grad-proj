@@ -192,7 +192,7 @@ const AdminPage = () => {
             </div>
             <div className="column mid" >
                 <div className="upper-mid">
-                    {/*<Map />*/}
+                    <Map />
                 </div>
                 
                 
@@ -207,12 +207,12 @@ const AdminPage = () => {
                     setChkEmail(false)
                     }}  value={email} />
                     {chkEmail ? "" : emailValid ? '' : <label className="error-label">Make sure your email is valid</label>}
-                    <input placeholder="Password" className="input-style" 
+                    <input placeholder="Password" className="input-style" type="password" 
                     onChange={(e) => {setPw(e.target.value)
                     setChkPw(false)  
                     }}
                      value={pw} />
-                    <input placeholder="Confirm Password" className="input-style" 
+                    <input placeholder="Confirm Password" className="input-style" type="password"
                     onChange={(e) => {setRePw(e.target.value)
                     setChkPw(false)
                     }}

@@ -14,7 +14,7 @@ const StaffCard = ({item}) => {
             item.map((data) => {
                 return(
 
-                    <div className='card'>
+                    <div className='staff-card'>
             <div className='inner-card'>
                 <div className='up' style={{backgroundImage:"url("+data?.design?.designImages[0]?.imageUrl+")"}}>                       
                     <div className='card-date'>{data?.design?.createdAt}</div> 

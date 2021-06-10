@@ -182,7 +182,7 @@ const DesignerPage = () => {
     const buttonDisable = () => {
         var hasNumber = /\d/;  
 
-        if(title.length > 14 && desc.length > 15 && tags.length >= 2 && !hasNumber.test(title) && !hasNumber.test(desc)){
+        if(title.length > 14 && desc.length > 15 && tags.length >= 2 && !hasNumber.test(title) && !hasNumber.test(desc) && b64 != undefined){
             return true
         }else{
           return false 
